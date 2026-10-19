@@ -87,6 +87,30 @@ export type AnswerOf<Q> =
       : boolean | string | Uncertain
 
 /**
+ * Metadata recorded for a decision-model invocation.
+ *
+ * Provider-backed implementations expose confidence and probability maps by
+ * question id. Implementations without native probabilities may omit them.
+ *
+ * @typeParam Q - The question map passed to `ask`.
+ */
+export interface DecisionMetadata<Q extends Record<string, Question> = Record<string, Question>> {
+  /** Time spent in the underlying model call, in milliseconds. */
+  latencyMs: number
+  /** Provider that served the decision. */
+  providerName?: string
+  /** Provider-reported model identifier that served the decision. */
+  modelId?: string
+  /** Per-question probability distributions, keyed by answer value. */
+  probabilities?: { readonly [K in keyof Q]: Readonly<Record<string, number>> }
+  /**
+   * Per-question confidence values in `[0.0, 1.0]`. API-backed providers use
+   * native Choice confidence and derive Noul confidence as `|2p - 1|`.
+   */
+  confidence?: { readonly [K in keyof Q]: number }
+}
+
+/**
  * Result returned by {@link DecisionModel.ask}, keyed by the same identifiers
  * as the input question map.
  *
@@ -102,8 +126,5 @@ export interface DecisionResult<Q extends Record<string, Question> = Record<stri
     totalTokens: number
   }
   /** Per-call metadata recorded by the implementation. */
-  metadata: {
-    /** Time spent in the underlying model call, in milliseconds. */
-    latencyMs: number
-  }
+  metadata: DecisionMetadata<Q>
 }
