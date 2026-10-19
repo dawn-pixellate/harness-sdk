@@ -5,7 +5,7 @@ import { ImageBlock } from '../../types/media.js'
 import { Message, TextBlock } from '../../types/messages.js'
 import { DecisionModel } from '../decision-model.js'
 import { DecisionsAPIDecisionModel } from '../decisions-api-decision-model.js'
-import { askSystemOne, resolveSystemOneProviderConfig } from '../system-one-protocol.js'
+import { askSystemOne, resolveSystemOneProviderConfig } from '../system-one-http-adapter.js'
 import { TypeSafeDecisionModel } from '../typesafe-decision-model.js'
 import { Uncertain } from '../types.js'
 

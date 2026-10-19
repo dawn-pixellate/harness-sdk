@@ -1,5 +1,5 @@
 /**
- * Shared `/v1/systemone` protocol translation for decision-model providers.
+ * Shared `/v1/systemone` HTTP adapter for compatible decision-model providers.
  *
  * @internal
  */

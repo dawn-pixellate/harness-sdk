@@ -3,7 +3,7 @@
  */
 
 import { DecisionModel } from './decision-model.js'
-import { askSystemOne, resolveSystemOneProviderConfig, type SystemOneProviderConfig } from './system-one-protocol.js'
+import { askSystemOne, resolveSystemOneProviderConfig, type SystemOneProviderConfig } from './system-one-http-adapter.js'
 import type { DecisionInput, DecisionResult, Question } from './types.js'
 
 const DECISIONS_API_ENDPOINT = 'https://decisionapi.net/v1/systemone'
